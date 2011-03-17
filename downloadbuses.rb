@@ -53,9 +53,9 @@ def downloadService(service)
    }
 end
 
-[16,11,15,27].each { |i|
-#(1..100).each { |i|
+#[16,11,15,27].each { |i|
+(1..100).each { |i|
    downloadService( i.to_s() )
-   sleep 10  
+   sleep 30  
  }
 
