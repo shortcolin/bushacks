@@ -67,14 +67,14 @@ def searchnearest(here,wantedpos,best=None,depth=0):
     # How about this node?
     disthere = distance(here.location[0],wantedpos)
     distbest = distance(best.location[0],wantedpos)
-    if depth %2 == 0: print "---"
-    print depth, depth %2 , ":", here, "best is",best.location[1:], "herecloser ",disthere<distbest
+    #if depth %2 == 0: print "---"
+    #print depth, depth %2 , ":", here, "best is",best.location[1:], "herecloser ",disthere<distbest
 
     if disthere < distbest: # and here.location[1] != 36235324:
-        print "    New best! distance is ",disthere-distbest
-        print "    Old best ",best, "distance wanted<>best ",distbest
-        print "    New best ",here, "distance wanted<>new ",disthere
-        print "    Wanted: ",wantedpos
+        #print "    New best! distance is ",disthere-distbest
+        #print "    Old best ",best, "distance wanted<>best ",distbest
+        #print "    New best ",here, "distance wanted<>new ",disthere
+        #print "    Wanted: ",wantedpos
         best = here
 
     # Work out which children to search
@@ -106,7 +106,7 @@ def searchnearest(here,wantedpos,best=None,depth=0):
     distaxis = abs(wantedposval-nodeval)  # distance_axis(here,point)
 
     if distaxis <= distbest:
-        print "Search furthest ",distaxis, " wanted pos ",wantedposval, " node val ",nodeval
+        #print "Search furthest ",distaxis, " wanted pos ",wantedposval, " node val ",nodeval
         best = searchnearest(furthestNode,wantedpos,best,depth+1)
 
     return best
