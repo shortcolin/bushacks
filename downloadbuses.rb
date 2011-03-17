@@ -8,7 +8,7 @@ $db = SQLite3::Database.new( "buses.db" )
 
 $db.execute("create table stops (stopcode INTEGER PRIMARY KEY,name TEXT,x double,y double)")
 $db.execute("create table services (stopcode INTEGER, service INTEGER)")
-$db.execute("create table points (service INTEGER,chain INTEGER,x double, y double)")
+$db.execute("create table points (service INTEGER,chain INTEGER,x double, y double,neareststop INTEGER, error double)")
 $seenStops = {}
 
 
@@ -28,7 +28,7 @@ def downloadService(service)
        yloc=point.elements['y'].text
 
        $db.execute("insert into points (service,chain,x,y) values (?,?,?,?)",service,chain,xloc,yloc)
-       puts "Point #{chain},#{xloc},#{yloc}"
+       #puts "Point #{chain},#{xloc},#{yloc}"
     }
 
     doc.elements.each("map/markers/busStop") { |element|
@@ -40,7 +40,7 @@ def downloadService(service)
        if $seenStops.has_key?(code) == false
           $db.execute("insert into stops (stopcode,name,x,y) values (?,?,?,?)",code,name,xloc,yloc)
           $seenStops[code]=true
-          puts "Service has stop #{name},#{code},#{xloc},#{yloc}"
+          #puts "Service has stop #{name},#{code},#{xloc},#{yloc}"
 
        end
 
@@ -53,9 +53,9 @@ def downloadService(service)
    }
 end
 
-#(16..18).each { |i|
-(1..100).each { |i|
+[16,11,15,27].each { |i|
+#(1..100).each { |i|
    downloadService( i.to_s() )
-   sleep 5
+   sleep 10  
  }
 
