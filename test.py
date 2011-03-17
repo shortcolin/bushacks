@@ -21,8 +21,16 @@ tree=kdtree(stops)
 
 #searchrange(tree,(55.9014167786,-4),(55.916,-3.224),2)
 
-testloc=(55.952545,-3.200546)
-nearest = searchnearest(tree,testloc)
+#testloc=(55.952545,-3.200546)
+#nearest = searchnearest(tree,testloc)
+#print "The nearest is ",nearest, distance(nearest.location[0],testloc)
 
-print "The nearest is ",nearest, distance(nearest.location[0],testloc)
-
+# Snap route points to stops
+curs.execute("select * from points")
+for row in curs:
+   route,chain,x,y,stop,dist=row
+   pointloc=(x,y)
+   stop=searchnearest(tree,pointloc)
+   stoploc,code,name=stop.location
+   distancefromneareststop=distance(pointloc,stoploc) 
+   print "%d %d %d %s %f"%(route,chain,code,name,distancefromneareststop)
