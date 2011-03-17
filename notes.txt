@@ -1,0 +1,43 @@
+
+Get locations for a street
+
+http://www.mybustracker.co.uk/getRuePoints.php?rueRef=3877
+
+Returns an XML document of bus-stops for a given street
+
+http://mybustracker.co.uk/map.html?serviceMnemo=16
+
+Shows a map for a given service
+
+map.js
+
+/* Affiche d'arrets de bus */
+        if (busStopCode!="")
+            var url="getBusStopMap.php?busStopCode="+busStopCode;
+        else if (serviceMnemo!="")
+            var url="getServicePoints.php?serviceMnemo="+serviceMnemo;
+        else if (rueRef!="")
+            var url="getRuePoints.php?rueRef="+rueRef;
+        else if (codePostal!="")
+            var url="getCodePostalMap.php?codePostal="+codePostal;
+        else // aucune url correcte n'a été fournie. On mets donc un map sur une rue inconnu (pourquoi pas) pour obtenir le message d'erreur
+            var url="getRuePoints.php?rueRef=0";
+
+To get points for a service:
+
+http://mybustracker.co.uk/getServicePoints.php?serviceMnemo=16
+
+To get nearest points for a postcode:
+
+http://mybustracker.co.uk/getCodePostalMap.php?codePostal=EH139QL
+
+To get map points for a bus stop:
+
+http://mybustracker.co.uk/getBusStopMap.php?busStopCode=36242497
+
+
+sudo gem install sqlite3-ruby
+
+
+http://mybustracker.co.uk/getBusStopDepartures.php?refreshCount=8&clientType=b&busStopCode=36242497
+

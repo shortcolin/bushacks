@@ -1,0 +1,7 @@
+Hacky code for downloading Lothian buses data. Used to prototype the redbus android bus app.
+
+http://code.google.com/p/redbus/
+
+Use Ruby script downloadbuses.rb once to fill the sqlite3 stop database
+Python file test.py can be edited to run various tests using the kdtree stuff
+ 
